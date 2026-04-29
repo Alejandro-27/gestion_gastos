@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %} 
+{% block title %}Editar Gasto{% endblock %} 
+{% block heading %}Editar Gasto{% endblock %} 
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+    
+    <p>
+        <label for="descripcion">Descripción:</label>
+        <input type="text" id="descripcion" name="descripcion" 
+               value="{{ gasto.descripcion|default:'' }}" required>
+    </p>
+
+    <p>
+        <label for="monto">Monto:</label>
+        <input type="number" id="monto" name="monto" step="0.01" 
+               value="{{ gasto.monto|default:'' }}" required>
+    </p>
+
+    <button type="submit" class="btn btn-primary">
+        {% if gasto %} Actualizar {% else %} Registrar {% endif %}
+    </button>
+</form>
+
+{% endblock %}
