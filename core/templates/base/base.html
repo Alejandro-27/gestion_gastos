@@ -18,14 +18,28 @@
     </nav>
 
     <div class="menu-lateral">
-      <nav>
-        <a href="{% url 'home' %}">Inicio</a>
-        <a href="{% url 'registro' %}">Registro</a>
+  <nav>
+    <a href="{% url 'home' %}">Inicio</a>
+
+    {% if user.is_authenticated %}
+        <!-- Solo se muestra si hay sesión -->
+        <a href="{% url 'registrar_gastos' %}">Registrar Gasto</a>
+        <a href="{% url 'listar_gastos' %}">Listar Gastos</a>
+        
+        <hr class="text-white">
+        <span class="text-white px-3 small">Usuario: {{ user.username }}</span>
+        
+        <form action="{% url 'logout' %}" method="post" class="px-3 mt-2">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-sm w-100">Cerrar Sesión</button>
+        </form>
+    {% else %}
+        <!-- Solo se muestra si NO hay sesión -->
         <a href="{% url 'login' %}">Iniciar sesión</a>
-        <a href="{% url 'registrar_gastos' %}">Registrar Gastos</a>
-        <a href="{% url 'listar_gastos' %}">Lista de Gastos</a>
-      </nav>
-    </div>
+        <a href="{% url 'registro' %}">Registrarme</a>
+    {% endif %}
+  </nav>
+</div>
 
     <div class="contenido-principal">
         {% if messages %}

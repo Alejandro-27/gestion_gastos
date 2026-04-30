@@ -122,5 +122,6 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-LOGIN_REDIRECT_URL = 'gastos' # A dónde va tras el login
-LOGOUT_REDIRECT_URL = 'login'   # A dónde va tras cerrar sesión
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'registrar_gastos'
+LOGOUT_REDIRECT_URL = 'login'

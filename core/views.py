@@ -3,6 +3,8 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Gastos
 from .forms import RegistroForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
 
 
 def home(request):
@@ -19,6 +21,7 @@ def registro(request):
     return render(request, 'usuarios/registro.html', {'form': form})
 
 
+@login_required
 def registrar_gastos(request):
     if request.method == 'POST':
         descripcion = request.POST.get('descripcion')
@@ -35,6 +38,7 @@ def registrar_gastos(request):
     return render(request, 'gastos/registrar_gastos.html', {'gastos': gastos_list})
 
 
+@login_required
 def editar_gastos(request, gasto_id):
     gasto = get_object_or_404(Gastos, id=gasto_id)
     if request.method == 'POST':
@@ -46,10 +50,12 @@ def editar_gastos(request, gasto_id):
     return render(request, 'gastos/editar_gastos.html', {'gasto': gasto})
 
 
+@login_required
 def listar_gastos(request):
     gastos = Gastos.objects.all().order_by('-fecha')
     return render(request, 'gastos/listar_gastos.html', {'gastos': gastos})
 
+@login_required
 def eliminar_gastos(request, gasto_id):
     gasto = get_object_or_404(Gastos, id=gasto_id)
     gasto.delete()

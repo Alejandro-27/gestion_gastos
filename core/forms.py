@@ -8,9 +8,9 @@ class RegistroForm(UserCreationForm):
     class Meta:
         model = User
         fields = ["username", "email", "first_name", "last_name"]
-        # También puedes traducir las etiquetas de los campos del modelo User así:
+        # También se puede traducir las etiquetas de los campos del modelo User así:
         labels = {
             'username': 'Nombre de usuario',
             'first_name': 'Nombre',
             'last_name': 'Apellido',
-        }
+        }   
