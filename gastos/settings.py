@@ -117,5 +117,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
 LOGIN_REDIRECT_URL = 'gastos' # A dónde va tras el login
 LOGOUT_REDIRECT_URL = 'login'   # A dónde va tras cerrar sesión
