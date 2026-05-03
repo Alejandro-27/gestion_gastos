@@ -59,3 +59,4 @@ def eliminar_gastos(request, gasto_id):
     gasto.delete()
     messages.success(request, "¡El gasto se ha eliminado correctamente!")
     return redirect("listar_gastos")
+ 
