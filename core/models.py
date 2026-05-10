@@ -6,6 +6,7 @@ class Gastos(models.Model):
     descripcion = models.CharField(max_length=200)
     monto = models.DecimalField(max_digits=12, decimal_places=2) 
     fecha = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
 
     def __str__(self):
         # Si el usuario es None (invitado)
